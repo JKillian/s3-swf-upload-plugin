@@ -186,6 +186,8 @@ package com.elctech {
             postVariables.signature               = _options.signature;
             postVariables["Content-Type"]         = _options.ContentType;
             postVariables["Content-Disposition"]  = _options.ContentDisposition;
+			if (_options.CacheControl)
+				postVariables["Cache-Control"]    = _options.CacheControl;
             postVariables.policy                  = _options.policy;
             
             /**

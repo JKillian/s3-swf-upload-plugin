@@ -80,7 +80,8 @@ package com.nathancolgate.s3_swf_upload {
       upload_options.acl                = xml.acl;
       upload_options.Expires            = xml.expirationdate;
       upload_options.Secure             = xml.https;
-	  upload_options.ContentDisposition = xml.contentDisposition;
+	  upload_options.ContentDisposition = xml.contentdisposition;
+	  upload_options.CacheControl       = xml.cachecontrol;
       upload_options.newKey             = xml.newKey;  //NOTE that we stop caring about the specified prefix if we have a newkey.
 
       if (xml.errorMessage != "") {

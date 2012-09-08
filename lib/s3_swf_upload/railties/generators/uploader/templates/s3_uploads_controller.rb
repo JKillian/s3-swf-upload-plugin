@@ -17,6 +17,7 @@ class S3UploadsController < ApplicationController
     key                 = params[:key]
     content_type        = params[:content_type]
     content_disposition = 'attachment'
+    cache_control       = 'no-cache'
     https               = 'false'
     error_message       = ''
     expiration_date     = 1.hours.from_now.utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')
@@ -30,6 +31,7 @@ class S3UploadsController < ApplicationController
         {'acl': '#{acl}'},
         {'Content-Type': '#{content_type}'},
         {'Content-Disposition': '#{content_disposition}'},
+        {'Cache-Control': '#{cache_control}'},
         ['content-length-range', 1, #{max_file_size}],
         ['starts-with', '$Filename', ''],
         ['eq', '$success_action_status', '201']
@@ -48,7 +50,8 @@ class S3UploadsController < ApplicationController
           :acl                 => acl,
           :expirationdate      => expiration_date,
           :https               => https,
-          :contentDisposition  => content_disposition,
+          :contentdisposition  => content_disposition,
+          :cachecontrol        => cache_control,
           :errorMessage        => error_message.to_s
         }.to_xml
       }
